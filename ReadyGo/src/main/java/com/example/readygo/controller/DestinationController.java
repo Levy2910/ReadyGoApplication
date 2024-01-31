@@ -1,6 +1,7 @@
 package com.example.readygo.controller;
 
 import com.example.readygo.model.Destination;
+import com.example.readygo.service.DestinationService;
 import com.example.readygo.service.IDestinationService;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -12,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 @RestController
 @RequiredArgsConstructor
@@ -19,8 +21,17 @@ import java.util.List;
 public class DestinationController {
     private final IDestinationService iDestinationService;
     @GetMapping("/destinations")
-    public List<Destination> getAllDestinations() {
-        return iDestinationService.getAllDestinations();
+    public ResponseEntity<List<Destination>> getAllDestinations() {
+        try {
+
+            List<Destination> destinations = iDestinationService.getAllDestinations();
+            return ResponseEntity.ok(destinations);
+        }
+        catch(Exception e){
+            System.out.println(e);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+
     }
     @GetMapping("/detail/{destinationID}")
     public ResponseEntity<Destination> getOneDestination(@PathVariable Long destinationID){

@@ -18,6 +18,7 @@ public class DestinationService implements IDestinationService{
     private final DestinationRepository destinationRepository;
     @Override
     public List<Destination> getAllDestinations() {
+
         return destinationRepository.findAll();
     }
 
