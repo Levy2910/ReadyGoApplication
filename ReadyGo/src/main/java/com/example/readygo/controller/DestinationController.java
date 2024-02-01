@@ -20,6 +20,18 @@ import java.util.List;
 @RequestMapping("/")
 public class DestinationController {
     private final IDestinationService iDestinationService;
+
+    @CrossOrigin(
+            origins = {
+                    "http://localhost:3000"
+            },
+            methods = {
+                    RequestMethod.OPTIONS,
+                    RequestMethod.GET,
+                    RequestMethod.PUT,
+                    RequestMethod.DELETE,
+                    RequestMethod.POST
+            })
     @GetMapping("/destinations")
     public ResponseEntity<List<Destination>> getAllDestinations() {
         try {

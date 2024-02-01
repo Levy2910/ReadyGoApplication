@@ -16,6 +16,18 @@ import java.util.List;
 public class CommentController {
     final private ICommentService iCommentService;
 
+    @CrossOrigin(
+            origins = {
+                    "http://localhost:3000"
+            },
+            methods = {
+                    RequestMethod.OPTIONS,
+                    RequestMethod.GET,
+                    RequestMethod.PUT,
+                    RequestMethod.DELETE,
+                    RequestMethod.POST
+            })
+
     @GetMapping("/all_comments")
     public ResponseEntity<List<Comment>> showAllComments(){
         try{

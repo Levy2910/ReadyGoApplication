@@ -23,6 +23,17 @@ import java.nio.file.Paths;
 @RequestMapping("/user")
 public class UserController {
     private final IUserService iUserService;
+    @CrossOrigin(
+            origins = {
+                    "http://localhost:3000"
+            },
+            methods = {
+                    RequestMethod.OPTIONS,
+                    RequestMethod.GET,
+                    RequestMethod.PUT,
+                    RequestMethod.DELETE,
+                    RequestMethod.POST
+            })
     @PostMapping("/register")
     public ResponseEntity<String> addUser(@RequestBody User user){
         try{
